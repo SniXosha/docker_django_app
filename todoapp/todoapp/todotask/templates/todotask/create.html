@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create task</title>
+</head>
+<body>
+ <a href="{% url 'todotask:index' %}">Back</a> <br>
+<h3>New task:</h3>
+<br>
+<form action="{% url 'todotask:create_post' %}" method="post">
+{% csrf_token %}
+
+<b>Task:</b> <input type="text" name="task_text" /> <br>
+<b>Deadline:</b> <input type="datetime-local" name="deadline" /> <br>
+
+
+<input type="submit" value="Create" />
+</form>
+
+</body>
+</html>

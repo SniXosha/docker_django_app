@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task info</title>
+</head>
+<body>
+
+{% if user == task.user %}
+
+    <a href="{% url 'todotask:index' %}">Back</a> <br>
+
+    <b>Task:</b> {{ task.task_text }}
+    <br>
+    <b>Created:</b> {{ task.pub_date }}
+    <br>
+    <b>Deadline:</b> {{ task.deadline }}
+    <br>
+    <b>Finished:</b> {{ task.finished }}
+    <br>
+
+<form action="{% url 'todotask:finish' task.id %}" method="post">
+{% csrf_token %}
+
+<input type="submit" value="Finish" />
+</form>
+
+{% else %}
+
+    <h1>NO PERMISSION</h1>
+
+{% endif %}
+
+</body>
+</html>

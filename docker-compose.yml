@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  todoapp:
+    command: ["./wait.sh"]
+    tty: true
+    stdin_open: true
+    build: ./todoapp
+    restart: always
+    links:
+      - database
+    ports:
+      - 8000:8000
+  database:
+    tty: true
+    build: ./postgres
+    restart: always
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data

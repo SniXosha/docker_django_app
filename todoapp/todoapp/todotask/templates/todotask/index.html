@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo</title>
+</head>
+<body>
+
+Welcome, {{  user.username  }} | <a href="{% url 'logout' %}">logout</a>
+<br>
+<a href="{% url 'todotask:create' %}">Create new task</a>
+
+<h2> Relevant tasks </h2>
+<ul>
+    {% for task in relevant_tasks %}
+        <li><a href="{% url 'todotask:detail' task.id %}">{{ task.task_text }}</a></li>
+    {% endfor %}
+</ul>
+
+<h2> Outdated tasks </h2>
+<ul>
+    {% for task in outdated_tasks %}
+        <li><a href="{% url 'todotask:detail' task.id %}">{{ task.task_text }}</a></li>
+    {% endfor %}
+</ul>
+
+<h2> Finished tasks </h2>
+<ul>
+    {% for task in finished_tasks %}
+        <li><a href="{% url 'todotask:detail' task.id %}">{{ task.task_text }}</a></li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
